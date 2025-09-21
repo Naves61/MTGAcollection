@@ -1,0 +1,3 @@
+[2024-01-01T01:00:00Z] BoosterOpened {"payload":{"BoosterOpened":{"cards":[{"grpId":12345,"count":1},{"grpId":67890,"count":1}]}}}
+[2024-01-01T01:05:00Z] CraftCard {"payload":{"CraftCard":{"spentCards":[{"grpId":67890,"quantity":1}]}}}
+[2024-01-01T01:10:00Z] InventoryDelta {"payload":{"InventoryDelta":{"changes":[{"grpId":55555,"delta":2}]}}}
