@@ -26,7 +26,10 @@ from .store import Store
 from .tailer import FileTailer
 from .version import __version__
 
-_PLAYER_LOG_RELATIVE = Path("Library/Logs/Wizards Of The Coast/MTGA/Unity/Player.log")
+_PLAYER_LOG_RELATIVE_CANDIDATES = (
+    Path("Library/Logs/Wizards Of The Coast/MTGA/Player.log"),
+    Path("Library/Logs/Wizards Of The Coast/MTGA/Unity/Player.log"),
+)
 _UTC = _dt.timezone.utc
 
 
@@ -131,7 +134,14 @@ class Tracker:
         self.store.clear_pending_deltas()
 
     def _player_log_path(self) -> Path:
-        return self.config.paths.base_dir / _PLAYER_LOG_RELATIVE
+        base = self.config.paths.base_dir
+        for relative in _PLAYER_LOG_RELATIVE_CANDIDATES:
+            candidate = base / relative
+            if candidate.exists():
+                return candidate
+        # Fall back to the first known location so we at least create the
+        # directory structure for a fresh installation.
+        return base / _PLAYER_LOG_RELATIVE_CANDIDATES[0]
 
     def _read_seed_csv(self, csv_path: Path) -> Dict[int, int]:
         with csv_path.open("r", encoding="utf-8") as handle:
