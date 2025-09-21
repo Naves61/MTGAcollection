@@ -9,6 +9,14 @@ import threading
 from pathlib import Path
 from typing import Dict, List, Optional
 
+if __package__ is None or __package__ == "":
+    # When executed as a script (e.g. ``python src/tracker.py``) the module is
+    # not part of a package, which breaks the relative imports below. Add the
+    # project root to ``sys.path`` and set ``__package__`` so the imports work
+    # both for ``python -m src.tracker`` and direct script execution.
+    sys.path.append(str(Path(__file__).resolve().parent.parent))
+    __package__ = "src"
+
 from .config import Config, load_config
 from .exporter import Exporter
 from .mapping import MappingManager
