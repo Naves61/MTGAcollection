@@ -1,5 +1,6 @@
 # MTGA Collection Tracker
 
+codex/implement-mtga-collection-tracker-on-macos-m8xth1
 A headless Magic: The Gathering Arena collection tracker for macOS that tails
 Arena log files, keeps a durable SQLite database of owned cards, and exports the
 current collection to CSV/JSON for easy ingestion by spreadsheets or other
@@ -168,6 +169,7 @@ mtga-collection-tracker/
 
 ## Development
 
+codex/implement-mtga-collection-tracker-on-macos-m8xth1
 The project targets Python 3.11. Create a virtual environment and install
 development dependencies when hacking on the codebase:
 
